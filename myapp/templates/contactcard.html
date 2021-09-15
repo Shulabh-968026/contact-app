@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block one %}
+{% if contact %}
+<div class="container-fluid">
+    <div class="card" style="width:600px;margin: auto;">
+        <a href="{% url 'image' contact.id %}" style="margin: auto;"><img class="card-img-top" style="width: 400px;height: 300px;" 
+          src='{{contact.image.url}}' alt="Card image"></a>
+        {% block image1 %}
+        {% endblock %}
+        <div class="card-body text-center">
+          <h4 class="card-title">{{contact.name}}</h4>
+          <p class="card-text">{{contact.email}}</p>
+          <p class="card-text">{{contact.phone}}</p>
+          <a href="{% url 'contacts' %}" class="btn btn-primary">Contact List</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}  

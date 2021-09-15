@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block three %}
+{% if contact %}
+<div class="container-fluid">
+    <h1 class="text-uppercase text-info">Contact Edit Form</h1>
+    <form method="POST" action="{% url 'edit' contact.id %}" onsubmit="return validation()">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="name" value="{{contact.name}}" placeholder="Enter Name.." id="name"
+                 class="form-control border-3 border-primary p-2"/><br/>
+            
+            <input type="email" name="email" value="{{contact.email}}" placeholder="Enter Email.." id="email"
+                 class="form-control border-3 border-primary p-2"/><br/>
+
+            <input type="text" name="phone" value="{{contact.phone}}" placeholder="Enter Phone Number.." id="phone"
+                 class="form-control border-3 border-primary p-2"/><br/>
+
+            <button type="submit" class="btn btn-success btn-lg" id="submit">Edit Contact</button>
+            <a href="{% url 'contacts' %}" class="btn btn-success btn-lg ml-3">Contact List</a>
+        </div>
+    </form>
+</div>
+{% endif %}
+{% if message %}
+        <h1 class="text-info" style="font-size: 50px;">{{ message }}</h1>
+{% endif %}
+{% endblock %}

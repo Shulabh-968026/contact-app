@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+
+{% block one %}
+{% if id %}
+    <form method="POST" enctype="multipart/form-data" style="margin: auto;" action="{% url 'change_image' id %}">
+        {% csrf_token %}
+        <input type="file" name="image" required title="image">
+        <button type="submit" class="btn btn-success btn-lg">Change Image</button>
+    </form>
+{% endif %}
+{% endblock %}

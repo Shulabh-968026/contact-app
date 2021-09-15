@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block one %}
+
+<div class="container-fluid">
+    <h1 class="text-uppercase text-info">Contact Form</h1>
+    <form method="POST" action="{% url 'index' %}" onsubmit="return validation()" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Enter Name.." id="name"
+                 class="form-control border-3 border-primary p-2"/><br/>
+            
+            <input type="email" name="email" placeholder="Enter Email.." id="email"
+                 class="form-control border-3 border-primary p-2"/><br/>
+
+            <input type="text" name="phone" placeholder="Enter Phone Number.." id="phone"
+                 class="form-control border-3 border-primary p-2"/><br/>
+
+            <input type="file" name="image" placeholder="upload images.." id="image" required title="image"
+                 class="form-control border-3 border-primary p-2"/><br/>
+
+            <button type="submit" class="btn btn-success btn-lg" id="submit">Add New Contact</button>
+            <a href="{% url 'contacts' %}" class="btn btn-success btn-lg ml-3">Contact List</a>
+        </div>
+    </form>
+    {% if message %}
+        <h1 class="text-info">{{ message }}</h1>
+    {% endif %}
+</div>
+
+{% endblock%}

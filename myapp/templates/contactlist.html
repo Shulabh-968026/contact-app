@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block two %}
+
+<div class="container-fluid">
+    <a href="{% url 'index' %}" class="btn btn-success btn-lg">Add Contact</a>
+    <table class="table table-dark table-hover text-center mt-3">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Edit/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if contacts %}
+                {% for contact in contacts %}
+                <tr>
+                    <td><a href="{% url 'card' contact.id %}" style="color: white; text-decoration: none;">{{contact.name}}</a></td>
+                    <td>{{contact.email}}</td>
+                    <td>{{contact.phone}}</td>
+                    <td>
+                        <a href="{% url 'edit_contact' contact.id %}"><i class="fas fa-edit"></i></a>
+                        <a href="{% url 'delete' contact.id %}">
+                            <i class="fas fa-trash-alt" style="color: red;margin-left: 10px;"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
