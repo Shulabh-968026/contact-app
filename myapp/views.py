@@ -20,7 +20,10 @@ def index(request):
     return render(request,'contactform.html')
 
 def get_all_contacts(request):
-    contacts=get_list_or_404(Contact)
+    try:
+        contacts=get_list_or_404(Contact)
+    except Contact.DoesNotExist:
+        return render(request,'base.html')
     return render(request,'contactlist.html',{'contacts':contacts})
 
 def contact_card(request,id):
