@@ -122,9 +122,16 @@ USE_TZ = False
 STATIC_URL = '/static/'
 MEDIA_URL='/images/'
 
-STATICFILES_DIR=[
-    os.path.join(BASE_DIR,'static')
-]
+STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
+
+# Extra lookup directories for collectstatic to find static files
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'static/images')
 
