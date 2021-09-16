@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render,get_object_or_404
+from django.shortcuts import redirect, render,get_object_or_404,get_list_or_404
 from django.http import HttpResponse
 # Create your views here.
 from .models import Contact
@@ -20,7 +20,7 @@ def index(request):
     return render(request,'contactform.html')
 
 def get_all_contacts(request):
-    contacts=Contact.objects.all()
+    contacts=get_list_or_404(Contact)
     return render(request,'contactlist.html',{'contacts':contacts})
 
 def contact_card(request,id):
